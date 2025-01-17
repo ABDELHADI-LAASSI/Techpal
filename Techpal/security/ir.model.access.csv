@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_social,access_social,model_social,,1,1,1,1
+access_social_tags,access_social_tags,model_social_tags,,1,1,1,1
+

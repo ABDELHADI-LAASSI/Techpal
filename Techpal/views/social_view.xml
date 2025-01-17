@@ -1,0 +1,99 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_social_tree" model="ir.ui.view">
+        <field name="name">social.tree</field>
+        <field name="model">social</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_social_form" model="ir.ui.view">
+        <field name="name">social.form</field>
+        <field name="model">social</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="stages" widget="statusbar" clickable="1" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="type"/>
+                    </group>
+                    <group>
+                        <field name="content"/>
+                        <field name="tags" widget="many2many_tags"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_social_kanban" model="ir.ui.view">
+        <field name="name">social.kanban</field>
+        <field name="model">social</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stages" class="o_kanban_small_column o_opportunity_kanban" quick_create="0" archivable="false" sample="1" js_class="crm_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                        <style>
+                            .info {
+                                display: flex;
+                                column-gap: 1rem;
+                            }
+                            .info p:first-child {
+                                font-weight: bold;
+                            }
+
+                            .o_kanban_grouped {
+                                display: grid !important;
+                                grid-template-columns: 1fr 1fr 1fr 1fr !important;
+                            }
+
+                            .o_kanban_group {
+                                max-width: 100% !important;
+                            }
+                        </style>
+                        <div class="oe_kanban_global_click">
+                            <div class="info">
+                                <p>Nom de la compagne : </p>
+                                <p> <field name="name" /> </p>
+                            </div>
+                            <div class="info">
+                                <p>Date de la compagne : </p>
+                                <p> <field name="date" /> </p>
+                            </div>
+                            <div class="info">
+                                <p>Type de la compagne : </p>
+                                <p> <field name="type" /> </p>
+                            </div>
+                            <div class="tags">
+                                <field name="tags" widget="many2many_tags" />
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+                <field name="sequence" widget="handle"/>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_social" model="ir.actions.act_window">
+        <field name="name">Social Campaigns</field>
+        <field name="res_model">social</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="item" name="Campaigns" parent="social" action="action_social" sequence="1"/>
+</odoo>

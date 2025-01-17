@@ -1,0 +1,166 @@
+.details_h1 {
+    text-align: start;
+    margin-bottom: 5rem;
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 3rem;
+    column-gap: 5rem;
+}
+
+.download_report_button {
+    width: 100%;
+    background: #0c1348;
+    color: white;
+}
+.download_report_button:hover {
+    color: white;
+}
+
+.back_button {
+    width: 250px;
+    background: #0c1348;
+    color: white;
+    border: none;
+    padding: 12px;
+}
+
+.details-container form {
+    height: 100%;
+}
+
+.details-container form .form-group {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 1rem;
+}
+
+.details-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 1rem;
+}
+
+.details-container form .form-group label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.details-container form textarea {
+    height: 70%;
+}
+
+.assistance_form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.2rem;
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.assistance_form h1 {
+    border-bottom: 1px dashed #0c1348;
+    width: fit-content;
+    padding-bottom: 1rem;
+}
+
+.assistance_form button {
+    width: 250px;
+    border: none;
+    padding: 12px;
+    background-color: #0c1348;
+    color: white;
+}
+
+.assistance_form button:hover {
+    color: white !important;
+}
+
+.form_add_button  {
+    width: 325px;
+    border: none;
+    padding: 12px;
+    margin-top: 3rem;
+    background-color: #0c1348;
+    color: white;
+}
+
+.portal_logo_techpal {
+    width: 150px;
+}
+
+.back_button:hover , .form_add_button:hover {
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar {
+    background-color:#0c1348 !important;
+}
+
+
+
+
+
+.o_portal_navbar {
+    background-color: transparent !important;
+}
+
+.form-control {
+    transition: .3s;
+}
+
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #0c1348 !important;
+}
+
+.div-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.div-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.2rem;
+}
+
+.div-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1.2rem;
+}
+
+.custom-form-control {
+    display: grid;
+    row-gap: .7rem;
+}
+
+
+@media screen and (max-width: 770px) {
+    .div-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .details-container {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+}
+
+.o_footer_copyright {
+    display: none !important;
+}

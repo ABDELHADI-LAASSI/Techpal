@@ -1,0 +1,179 @@
+<odoo>
+
+
+    <template id="assistance_template" name="template_name">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <style>
+                        h1 {
+                            font-size:25px ;
+                            text-align: center;
+                        }
+                        table {
+                            border-collapse: collapse;
+                            width: 100%;
+                        }
+
+                        table td {
+                            padding: 5px;
+                            width: 50%;
+                        }
+
+                        .bold {
+                            font-weight: bold;
+                            font-family: "playfair_b";
+                        }
+                        .text-up {
+                            text-transform: uppercase;
+                        }
+                        .mb-1 {
+                            margin-bottom: 1rem;
+                        }
+                        .mb-1 {
+                            margin-bottom: 2rem;
+                        }
+                        div {
+                            margin-bottom: .1rem;
+                        }
+                        .regular {
+                            font-family: "report_serif_regular";
+                        }
+                    </style>
+                    <div class="page">
+                        <h1 class="bold" style="margin-bottom: 2.5rem;">RAPPORT D'INTERVENTION</h1>
+                        <table border="1">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">Nº DE fiche </span> :
+                                        <span class=""> <t t-esc="doc.name" /> </span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">client</span> :
+                                        <span class="regular"><t t-esc="doc.company_name.name" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">adresse</span> :
+                                        <span class="regular"><t t-esc="doc.adress" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">tel</span> :
+                                        <span class=""><t t-esc="doc.phone" /></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">objet</span> : 
+                                        <span class="regular"><t t-esc="doc.objet" /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">materiel </span> : 
+                                        <span class="regular"><t t-esc="doc.materiel" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">garantie</span> : 
+                                        <span class="regular"><t t-esc="doc.garantie" /></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">nature du contract</span> : 
+                                        <span class="regular"><t t-esc="doc.nature_de_contract" /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div>
+                                        <span class="bold text-up">diagnostique / observations</span> :
+                                        <span class="regular"><t t-esc="doc.diagnostic" /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div>
+                                        <span class="bold text-up">traveaux realises / pieces fournies</span> :
+                                        <span class="regular"><t t-esc="doc.traveaux_realises" /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">Date de début d'intervention</span> :
+                                        <span class=""><t t-esc="doc.date_intervention and doc.date_intervention.date() or ''" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">Heures de début d'intervention</span> :
+                                        <t t-esc="doc.date_intervention and doc.date_intervention.strftime('%H:%M') or ''" />
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">Date de fin d'intervention</span> :
+                                        <span class=""><t t-esc="doc.date_fin_intervention and doc.date_fin_intervention.date() or ''" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">Heures de fin d'intervention</span> :
+                                        <t t-esc="doc.date_fin_intervention and doc.date_fin_intervention.strftime('%H:%M') or ''" />
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">duree d'intervention</span> :
+                                        <span class=""><t t-esc="doc.duree_intervention" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="bold text-up">deplacement (km)</span> :
+                                        <span class=""><t t-esc="doc.deplacement_km" /></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="bold text-up">Remarque</span> : 
+                                        <span class="regular"><t t-esc="doc.remarque" /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="mb-1">
+                                        <span class="bold text-up">Nom et Prénom du TECHNICIEN</span> : 
+                                        <span class="regular"><t t-esc="doc.technicien.name" /></span>
+                                    </div>
+                                    <div style="margin-bottom: 5rem !important;">
+                                        <span class="bold text-up mb-2">signature du technicien</span> : 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-1">
+                                        <span class="bold text-up">nom du signataire</span> : 
+                                    </div>
+                                    <div style="margin-bottom: 5rem !important;">
+                                        <span class="bold text-up mb-2">chachet et signature </span>
+                                    </div>
+                                    
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    
+    
+    <record id="model_assistance_report" model="ir.actions.report">
+        <field name="name">Generate Report</field>
+        <field name="model">assistance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">assistance_module.assistance_template</field>
+        <field name="report_file">assistance_module.assistance_template</field>
+        <field name="binding_model_id" ref="model_assistance"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

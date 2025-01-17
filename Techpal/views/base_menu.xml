@@ -1,0 +1,8 @@
+<odoo>
+    <!--   Root Menu   -->
+    <menuitem id="social_marketing_techpal" name="Social Marketing Techpal"/>
+    <!--   Submenu   -->
+    <menuitem id="social" name="Social" parent="social_marketing_techpal" sequence="1"/>
+    <menuitem id="configuration" name="Configuration" parent="social_marketing_techpal" sequence="2"/>
+
+</odoo>

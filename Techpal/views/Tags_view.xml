@@ -1,0 +1,39 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_social_tags_tree" model="ir.ui.view">
+        <field name="name">social.tags.tree</field>
+        <field name="model">social.tags</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_social_tags_form" model="ir.ui.view">
+        <field name="name">social.tags.form</field>
+        <field name="model">social.tags</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- Action -->
+    <record id="action_social_tags" model="ir.actions.act_window">
+        <field name="name">Tags Campaigns</field>
+        <field name="res_model">social.tags</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="tags" name="Tags" parent="configuration" action="action_social_tags" sequence="1"/>
+</odoo>

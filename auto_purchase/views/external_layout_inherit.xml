@@ -1,0 +1,8 @@
+<odoo>
+    <template id="remove_pages_footer" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@class='text-muted'][span[@class='page']]" position="replace">
+            <!-- Section vide pour supprimer la pagination -->
+        </xpath>
+    </template>
+
+</odoo>

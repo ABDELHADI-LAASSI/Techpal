@@ -1,0 +1,40 @@
+.o_menu_sections , .o_menu_systray , header .dropdown-toggle , header .o_menu_brand , .o_main_navbar , .o_nav_entry {
+    background-color: #0c1348 !important;
+    color: white !important;
+}
+
+.o_form_view .o_inner_group {
+    grid-template-columns: fit-content(300px) minmax(0, 1fr) !important;
+    border: none !important;
+}
+
+.o-kanban-button-new , .o_list_button_add {
+    background-color: #0c1348 !important;
+    border: none !important;
+    color: white !important;
+}
+
+.o_form_button_create {
+    border: 1px solid #0c1348 !important;
+}
+
+.o_form_button_create:hover , .o-kanban-button-new:hover , .o_list_button_add:hover {
+    background-color: #0c1348 !important;
+    color: white !important;
+}
+
+
+.btn-primary {
+    background-color: #0c1348 !important;
+    border: none !important;
+    color: white !important;
+    transition: .3s;
+}
+
+.btn-primary:hover {
+    background-color: #002d49 !important;
+    color: white !important;
+}
+nav {
+    border: none !important;
+}

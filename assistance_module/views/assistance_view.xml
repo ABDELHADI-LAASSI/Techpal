@@ -1,0 +1,181 @@
+<odoo>
+    <record id="view_assistance_form" model="ir.ui.view">
+        <field name="name">assistance.form</field>
+        <field name="model">assistance</field>
+        <field name="arch" type="xml">
+            <form string="Assistance Form">
+                <header>
+                    <field name="stages" widget="statusbar" statusbar_visible="nouveau,en_cours" />
+                    <button name="to_cancelled" type="object" string="Cancelled" class="btn-primary" invisible="stages != 'en_cours'" />
+                    <button name="to_fait" type="object" string="Fait" class="btn-primary" invisible="stages != 'en_cours'" />
+                    <button name="to_closed" type="object" string="Closed" class="btn-primary" invisible="stages != 'en_cours'" />
+                    <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" />
+                </header>
+                <sheet>
+                    <div class="oe_title assis_title" >
+                        <h1>
+                            <field name="name" placeholder="Enter le ticket ..." style="width: 90%;" readonly="name == 'New'" />
+                        </h1>
+                        <field name="time_to_create" invisible="stages not in ('nouveau','en_cours')" />
+                    </div>
+                    <group>
+                        <group>
+                            <field name="objet" />
+                            <field name="ticket_type" />
+                            <field name="company_name" />
+                            <field name="email" widget="email" />
+                            <field name="phone" />
+                            <field name="adress" />
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority" />
+                            <field name="creation_date" />
+                            <field name="end_date" />
+                            <field name="article" />
+                            <field name="assistance_tags" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description du problème">
+                            <group>
+                                <field name="type_probleme" string="Type de problème" />
+                                <field name="description" placeholder="Donnez la raison en détail" />
+                            </group>
+                        </page>
+                        <page string="Rapport D'intervention">
+                            <group>
+                                <field name="materiel" string="Matériel" />
+                                <field name="garantie" string="Garantie" />
+                                <field name="remarque" string="Remarque" />
+                                <field name="nature_de_contract" string="Nature de contrat" />
+                                <field name="diagnostic" string="Diagnostic / Observations" />
+                                <field name="traveaux_realises" string="Travaux réalisés / Pieces fournies" />
+                                <field name="date_intervention" string="Date d'intervention" />
+                                <field name="date_fin_intervention" string="Date de fin d'intervention" />
+                                <field name="duree_intervention" string="Durée d'intervention" />
+                                <field name="deplacement_km" string="Déplacement (km)" />
+                                <field name="technicien" string="Téchnicien" />
+                            </group>
+                        </page>
+
+                        <page string="Pièces jointes">
+                            <field name="attachment_ids" widget="many2many_binary" />
+                        </page>
+                        <page string="Évaluation du client">
+                            <field name="client_feedback" placeholder="Retour client ..." />
+                        </page>
+                        <page string="Autres informations">
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_assistance_kanban" model="ir.ui.view">
+        <field name="name">assistance.kanban</field>
+        <field name="model">assistance</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stages" class="o_kanban_small_column o_opportunity_kanban" quick_create="0" archivable="false" sample="1" js_class="crm_kanban">
+                <field name="stages" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <style>
+                            .info{
+                                display: flex;
+                                column-gap: 1rem;
+                            }
+                            .info p:first-child {
+                                font-weight: bold;
+                            }
+                            .o_kanban_grouped {
+                                display: grid !important;
+                                grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+                            }
+                            .o_kanban_group {
+                                max-width: 100% !important;
+                            }
+                            p {
+                                margin: 0 !important;
+                            }
+                            .infos {
+                                display: grid;
+                                row-gap: 5px;
+                            }
+                            .title_container {
+                                margin-bottom: 10px;
+                            }
+                            .title {
+                                font-weight: bold;
+                                font-size: 17px;
+                            }
+                        </style>
+                        <div class="oe_kanban_global_click">
+                            <div class="title_container" style="display: flex;column-gap: 10px; justify-content: space-between;">
+                                <p class="title"><field name="name" /></p>
+                                <field name="time_to_create" invisible="stages not in ('nouveau','en_cours')" />
+                            </div>
+                            <div class="infos">
+                                <div class="info">
+                                    <p>Nom du client : </p>
+                                    <p> <field name="company_name" /> </p>
+                                </div>
+                                <div class="info">
+                                    <p>Type du ticket : </p>
+                                    <p> <field name="ticket_type" /> </p>
+                                </div>
+                                <div class="info">
+                                    <p>Courriel : </p>
+                                    <p> <field name="email" widget="email" /> </p>
+                                </div>
+                                <div class="info">
+                                    <p>Priorité : </p>
+                                    <p> <field name="priority" widget="priority" /> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+                <field name="sequence" widget="handle"/>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_assistance_tree" model="ir.ui.view">
+            <field name="name">assistance.tree</field>
+            <field name="model">assistance</field>
+            <field name="arch" type="xml">
+                <tree string="Assistance">
+                    <field name="name"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="stages"/>
+                    <field name="end_date"/>
+                    <field name="creation_date"/>
+                    <field name="time_to_create" widget="html"/>
+                    <field name="company_name"/>
+                    <field name="adress" />
+                    <field name="ticket_type"/>
+                    <field name="type_probleme" />
+                </tree>
+            </field>
+        </record>
+
+
+    <record id="action_assistance" model="ir.actions.act_window">
+        <field name="name">Assistance</field>
+        <field name="res_model">assistance</field>
+        <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+
+    <menuitem id="menu_assistance" name="Assistance" parent="assistance_sub_menu" action="action_assistance" />
+
+
+</odoo>

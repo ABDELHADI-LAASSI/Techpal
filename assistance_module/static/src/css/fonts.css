@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "playfair_r";
+    src: url(/assistance_module/static/src/fonts/PlayfairDisplay-Regular.ttf);
+}
+
+
+@font-face {
+    font-family: "playfair_b";
+    src: url(/assistance_module/static/src/fonts/PlayfairDisplay-Bold.ttf);
+}
+
+@font-face {
+    font-family: "report_serif_regular";
+    src: url(/assistance_module/static/src/fonts/PlayfairDisplay-Regular.ttf);
+}
