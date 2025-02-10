@@ -8,7 +8,7 @@
     'data': [
         'views/login_template.xml',
         'views/reset_password.xml',
-        'views/login_layout_inherit.xml'
+        'views/login_layout_inherit.xml',
     ],
     'assets': {
         'web.assets_frontend': [

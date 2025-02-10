@@ -1,0 +1,29 @@
+<odoo>
+    <record id="asistance_notification_template" model="mail.template">
+        <field name="name">Assistance Notification</field>
+        <field name="model_id" ref="assistance_module.model_assistance"/>
+        <field name="subject">Nouvelle Demande d'Assistance</field>
+        <field name="email_from">twitchabdelhadi@gmail.com</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                    <div style="color: black;">
+                        <h3 style="color: black; font-size: 20px; font-weight: bold">
+                            Une nouvelle demande d'assistance a été créée dans le système.
+                        </h3>
+                        <p style="color: black; font-size: 16px;">
+                            - Nom de l'entreprise : <t t-out="object.company_name.name"/>
+                        </p>
+                        <p style="color: black; font-size: 16px;">
+                            - Type de ticket : <t t-out="object.ticket_type"/>
+                        </p>
+                        <p style="color: black; font-size: 16px;">
+                            - Priorité : <t t-out="object.priority"/>
+                        </p>
+                        <p style="color: black; font-size: 16px;">
+                            - Date de création : <t t-out="object.creation_date"/>
+                        </p>
+                    </div>
+            </div>
+        </field>
+    </record>
+</odoo>

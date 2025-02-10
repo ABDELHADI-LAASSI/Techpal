@@ -160,14 +160,21 @@ class Assistance(models.Model):
                     vals['end_date'] = time_now
 
         return super(Assistance, self).write(vals)
-    
+
+
+
+    def send_email(self, email_to):
+        template = self.env.ref('assistance_module.asistance_notification_template')
+        template.email_to = email_to
+        template.send_mail(self.id, force_send=True)
+
     @api.model
     def create(self, vals):
         res = super(Assistance, self).create(vals)
-        print('================= inside', res.name)
-        if res.name == 'New':
+        if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
-        print('================= inside', res.name)
+        self.send_email('bbe@techpalservices.com')
+        self.send_email('techpalservices@gmail.com')
         return res
     
     def to_cancelled(self):
@@ -182,6 +189,8 @@ class Assistance(models.Model):
 
     def _get_report_base_filename(self):
         return self.name
+
+    
 
 class AssistanceTags(models.Model):
     _name = 'assistance.tags'

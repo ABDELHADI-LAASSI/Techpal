@@ -6,10 +6,13 @@
     'category': '',
     'depends': ['web', 'base', 'portal', 'mail', 'contacts'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'data/assistance_sequence.xml',
+        'data/assistance_ntification.xml',  
         'views/base_view.xml',
         'views/assistance_view.xml',
+        'views/assistance_tags_view.xml',
         'views/portal_view.xml',
         'report/assistance_report_template.xml'
     ],

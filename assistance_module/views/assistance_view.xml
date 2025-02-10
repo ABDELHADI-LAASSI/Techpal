@@ -175,7 +175,7 @@
     </record>
 
 
-    <menuitem id="menu_assistance" name="Assistance" parent="assistance_sub_menu" action="action_assistance" />
+    <menuitem id="menu_assistance" name="Assistance" parent="assistance_root" action="action_assistance" />
 
 
 </odoo>

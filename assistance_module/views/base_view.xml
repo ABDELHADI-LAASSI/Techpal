@@ -2,6 +2,6 @@
     <!--   Root Menu   -->
     <menuitem id="assistance_root" name="Assistance"/>
     <!--   Submenu   -->
-    <menuitem id="assistance_sub_menu" name="Assistance" parent="assistance_root" sequence="1"/>
+    <!-- <menuitem id="assistance_sub_menu" name="Assistance" parent="assistance_root" sequence="1"/> -->
 
 </odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <record id="assistance_category" model="ir.module.category">
+        <field name="name">Assistance</field>
+    </record>
+
+    <record id="assistance_user" model="res.groups">
+        <field name="name">Assistance User</field>
+        <field name="category_id" ref="assistance_module.assistance_category" />
+    </record>
+
+    <record id="assistance_manager" model="res.groups">
+        <field name="name">Assistance Manager</field>
+        <field name="category_id" ref="assistance_module.assistance_category" />
+    </record>
+</odoo>
