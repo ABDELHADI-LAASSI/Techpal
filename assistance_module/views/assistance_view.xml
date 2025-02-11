@@ -5,11 +5,11 @@
         <field name="arch" type="xml">
             <form string="Assistance Form">
                 <header>
-                    <field name="stages" widget="statusbar" statusbar_visible="nouveau,affecte" />
+                    <field name="stages" widget="statusbar" options="{'clickable': True}" />
                     <button name="to_cancelled" type="object" string="Cancelled" class="btn-primary" invisible="stages != 'affecte'" />
-                    <button name="to_fait" type="object" string="Fait" class="btn-primary" invisible="stages != 'affecte'" />
-                    <button name="to_closed" type="object" string="Closed" class="btn-primary" invisible="stages != 'affecte'" />
-                    <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" />
+                    <!-- <button name="to_fait" type="object" string="Résolu" class="btn-primary" invisible="stages != 'affecte'" />
+                    <button name="to_closed" type="object" string="Annulé" class="btn-primary" invisible="stages != 'affecte'" />
+                    <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" /> -->
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Résolu" bg_color="text-bg-success" invisible="stages != 'fait'" />

@@ -14,8 +14,15 @@ class Assistance(models.Model):
     company_name = fields.Many2one(
         'res.partner', 
         string="Nom de l'entreprise", 
-        domain=[('is_company', '=', True)]  # Only show companies
+        required=True
     )
+    related_company_name = fields.Char(
+        string="Nom du client", 
+        related="company_name.name", 
+        store=True, 
+        readonly=True
+    )
+
     ticket_type = fields.Selection([
         ('incident', 'Incident'),
         ('demande', 'Demande'),
@@ -84,7 +91,7 @@ class Assistance(models.Model):
     previous_stage = fields.Char(string="Previous Stage", readonly=True)
 
     sequence = fields.Integer(default=1)
-
+    
     def _group_expand_states(self, states, domain, order):
         return [key for key, val in self._fields['stages'].selection]
 
@@ -175,11 +182,26 @@ class Assistance(models.Model):
     @api.model
     def create(self, vals):
         res = super(Assistance, self).create(vals)
+        
+        # Ensure the record is fully saved before proceeding
+        res._cr.commit()
+        
+        # Now you can safely access the data
+        print("================= company", res.company_name.name)
+        
         if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
-        self.send_email('bbe@techpalservices.com')
-        self.send_email('techpalservices@gmail.com')
+        
+        template = self.env.ref('assistance_module.asistance_notification_template')
+        template.email_to = 'bbe@techpalservices.com'
+        template.send_mail(res.id, force_send=True)
+
+        template2 = self.env.ref('assistance_module.asistance_notification_template')
+        template2.email_to = 'techpalservices@gmail.com'
+        template2.send_mail(res.id, force_send=True)
+        
         return res
+
     
     def to_cancelled(self):
         self.stages = "pris_charge"
