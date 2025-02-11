@@ -9,7 +9,7 @@ class Assistance(models.Model):
     _order = 'sequence'
 
     #Main fields
-    name = fields.Char(default="New"    )
+    name = fields.Char(default="Nouveau", readonly=True)
     objet = fields.Text(string="Objet")
     company_name = fields.Many2one(
         'res.partner', 
@@ -30,11 +30,12 @@ class Assistance(models.Model):
 
     # Priority and Dates
     priority = fields.Selection([
-        ('0', 'Low'),
-        ('1', 'Normal'),
-        ('2', 'High'),
-        ('3', 'Very High')
-    ], string="Priorité", default='1')
+        ('P5', 'Minime (P5)'),
+        ('P1', 'Critique (P1)'),
+        ('P2', 'Haute (P2)'),
+        ('P3', 'Moyenne (P3)'),
+        ('P4', 'Basse (P4)')
+    ], string="Priorité", default='P3')
     creation_date = fields.Datetime(string="Date de création", default=fields.Datetime.now)
     end_date = fields.Datetime(string="Date de fin", readonly=True)
     article = fields.Char(string="Article")
@@ -74,10 +75,10 @@ class Assistance(models.Model):
 
     stages = fields.Selection([
         ('nouveau', 'Nouveau'),
-        ('en_cours', 'En cours'),
-        ('cancelled', 'Cancelled'),
-        ('fait', 'Fait'),
-        ('closed', 'Closed')
+        ('affecte', 'Affecté'),
+        ('pris_charge', 'Pris en charge'),
+        ('fait', 'Résolu'),
+        ('closed', 'Annulé')
     ], string="Stages", default="nouveau", group_expand='_group_expand_states')
     last_stage_change = fields.Datetime(string="Dernier Changement d'Étape", default=fields.Datetime.now)
     previous_stage = fields.Char(string="Previous Stage", readonly=True)
@@ -123,10 +124,13 @@ class Assistance(models.Model):
                     css_class = "minutes-red"
                 else:
                     css_class = "minutes"
+                min_word = 'minutes'
+                if diff_minutes <= 1:
+                    min_word = 'minute'
                 # Wrap the value in an HTML tag with a class
-                record.time_to_create = f'<span class="{css_class}">{int(diff_minutes)}</span>'
+                record.time_to_create = f'<span class="{css_class}">{int(diff_minutes)} {min_word}</span>'
             else:
-                record.time_to_create = '<span class="minutes">0</span>'
+                record.time_to_create = '<span class="minutes">0 minute</span>'
 
     @api.model
     def write(self, vals):
@@ -156,7 +160,7 @@ class Assistance(models.Model):
                 self.creation_date = time_now
 
                  # Set 'end_date' if transitioning to specific stages
-                if vals['stages'] in ['cancelled', 'fait', 'closed']:
+                if vals['stages'] in ['fait', 'closed']:
                     vals['end_date'] = time_now
 
         return super(Assistance, self).write(vals)
@@ -173,19 +177,19 @@ class Assistance(models.Model):
         res = super(Assistance, self).create(vals)
         if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
-        self.send_email('bbe@techpalservices.com')
-        self.send_email('techpalservices@gmail.com')
+        self.send_email('')
+        self.send_email('')
         return res
     
     def to_cancelled(self):
-        self.stages = "cancelled"
+        self.stages = "pris_charge"
     
     def to_fait(self):
         self.stages = "fait"
     def to_closed(self):
         self.stages = "closed"
     def to_encours(self):
-        self.stages = "en_cours"
+        self.stages = "affecte"
 
     def _get_report_base_filename(self):
         return self.name

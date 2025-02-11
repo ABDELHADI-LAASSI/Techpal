@@ -56,7 +56,7 @@
                         <strong>Vous n'avez créé aucune demande d'assistance pour le moment!</strong>
                     </div>
             </t>
-            <a href="/my/demande_assistance/form" class="btn  form_add_button">Créer une Nouvelle Demande d'assistance</a>
+            <a href="/my/demande_assistance/form" class="btn  form_add_button">Créer une nouvelle demande d'assistance</a>
         </t>
     </template>
 
@@ -155,12 +155,13 @@
                             <div class="custom-form-control">
                                 <label for="priority">Priorité</label>
                                 <select class="form-control" id="priority" name="priority">
-                                    <option value="3">Urgent</option>
-                                    <option value="2">Normal</option>
-                                    <option value="1">Faible</option>
+                                    <option value="P2">Critique (P1)</option>
+                                    <option value="P3">Haute (P2)</option>
+                                    <option value="P4">Moyenne (P3)</option>
+                                    <option value="P5">Basse (P4)</option>
                                 </select>
                             </div>
-                            <div class="custom-form-control">
+                            <!-- <div class="custom-form-control">
                                 <label for="type_probleme">Type de problème</label>
                                 <select class="form-control" id="type_probleme" name="type_probleme">
                                     <option value="internet">Internet</option>
@@ -170,8 +171,8 @@
                                     <option value="imprimante">Imprimante</option>
                                     <option value="telephone">Telephone</option>
                                     <option value="camera">Camera</option>
-                                </select>
-                            </div>
+                                </select> 
+                            </div> -->
                         </div>
                         
                         

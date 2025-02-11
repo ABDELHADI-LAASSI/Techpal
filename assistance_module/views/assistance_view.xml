@@ -5,18 +5,20 @@
         <field name="arch" type="xml">
             <form string="Assistance Form">
                 <header>
-                    <field name="stages" widget="statusbar" statusbar_visible="nouveau,en_cours" />
-                    <button name="to_cancelled" type="object" string="Cancelled" class="btn-primary" invisible="stages != 'en_cours'" />
-                    <button name="to_fait" type="object" string="Fait" class="btn-primary" invisible="stages != 'en_cours'" />
-                    <button name="to_closed" type="object" string="Closed" class="btn-primary" invisible="stages != 'en_cours'" />
+                    <field name="stages" widget="statusbar" statusbar_visible="nouveau,affecte" />
+                    <button name="to_cancelled" type="object" string="Cancelled" class="btn-primary" invisible="stages != 'affecte'" />
+                    <button name="to_fait" type="object" string="Fait" class="btn-primary" invisible="stages != 'affecte'" />
+                    <button name="to_closed" type="object" string="Closed" class="btn-primary" invisible="stages != 'affecte'" />
                     <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" />
                 </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Résolu" bg_color="text-bg-success" invisible="stages != 'fait'" />
+                    <widget name="web_ribbon" title="Annulé" bg_color="text-bg-danger" invisible="stages != 'closed'" />
                     <div class="oe_title assis_title" >
                         <h1>
-                            <field name="name" placeholder="Enter le ticket ..." style="width: 90%;" readonly="name == 'New'" />
+                            <field name="name" placeholder="Enter le ticket ..." style="width: 90%;" readonly="1" />
                         </h1>
-                        <field name="time_to_create" invisible="stages not in ('nouveau','en_cours')" />
+                        <field name="time_to_create" invisible="stages not in ('nouveau','affecte','pris_charge')" style="width: 150px !important;" />
                     </div>
                     <group>
                         <group>
@@ -85,6 +87,7 @@
         <field name="arch" type="xml">
             <kanban default_group_by="stages" class="o_kanban_small_column o_opportunity_kanban" quick_create="0" archivable="false" sample="1" js_class="crm_kanban">
                 <field name="stages" />
+                <progressbar field="priority" colors='{"P4": "muted", "P3": "info", "P2": "success", "P1": "warning"}' />
                 <templates>
                     <t t-name="kanban-box">
                         <style>
@@ -120,7 +123,7 @@
                         <div class="oe_kanban_global_click">
                             <div class="title_container" style="display: flex;column-gap: 10px; justify-content: space-between;">
                                 <p class="title"><field name="name" /></p>
-                                <field name="time_to_create" invisible="stages not in ('nouveau','en_cours')" />
+                                <field name="time_to_create" invisible="stages not in ('nouveau','affecte','pris_charge')" />
                             </div>
                             <div class="infos">
                                 <div class="info">
