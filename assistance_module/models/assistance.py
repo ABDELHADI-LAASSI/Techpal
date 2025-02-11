@@ -177,8 +177,8 @@ class Assistance(models.Model):
         res = super(Assistance, self).create(vals)
         if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
-        self.send_email('')
-        self.send_email('')
+        self.send_email('bbe@techpalservices.com')
+        self.send_email('techpalservices@gmail.com')
         return res
     
     def to_cancelled(self):
