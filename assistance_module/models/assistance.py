@@ -124,13 +124,13 @@ class Assistance(models.Model):
                     css_class = "minutes-red"
                 else:
                     css_class = "minutes"
-                min_word = 'minutes'
+                min_word = 'Min'
                 if diff_minutes <= 1:
                     min_word = 'minute'
                 # Wrap the value in an HTML tag with a class
                 record.time_to_create = f'<span class="{css_class}">{int(diff_minutes)} {min_word}</span>'
             else:
-                record.time_to_create = '<span class="minutes">0 minute</span>'
+                record.time_to_create = '<span class="minutes">0 Min</span>'
 
     @api.model
     def write(self, vals):
