@@ -111,3 +111,31 @@ main , .login_template_container , .card-body{
 .alert-success {
     margin-bottom: 1rem !important;
 }
+
+
+@media screen and (max-width: 768px) {
+    .login_template_container {
+        display: flex !important;
+        flex-direction: column-reverse;
+    }
+
+    .login_template_container .form_page {
+        max-width: 500px !important;
+    }
+
+    .login_template_container .logo_part {
+        margin-top: 2rem;
+    }
+
+    .login_template_container .logo_part img {
+        width: 200px;
+    }
+
+    .login_template_container .logo_part h2 {
+        font-size: 25px;
+    }
+
+    .login_template_container .logo_part a {
+        font-size: 15px;
+    }
+}
