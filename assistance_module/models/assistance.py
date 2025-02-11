@@ -126,7 +126,7 @@ class Assistance(models.Model):
                     css_class = "minutes"
                 min_word = 'Min'
                 if diff_minutes <= 1:
-                    min_word = 'minute'
+                    min_word = 'Min'
                 # Wrap the value in an HTML tag with a class
                 record.time_to_create = f'<span class="{css_class}">{int(diff_minutes)} {min_word}</span>'
             else:
