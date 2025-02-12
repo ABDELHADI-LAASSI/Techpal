@@ -38,10 +38,10 @@ class Assistance(models.Model):
     # Priority and Dates
     priority = fields.Selection([
         ('P5', 'Minime (P5)'),
-        ('P1', 'Critique (P1)'),
-        ('P2', 'Haute (P2)'),
+        ('P4', 'Basse (P4)'),
         ('P3', 'Moyenne (P3)'),
-        ('P4', 'Basse (P4)')
+        ('P2', 'Haute (P2)'),
+        ('P1', 'Critique (P1)'),
     ], string="Priorité", default='P3')
     creation_date = fields.Datetime(string="Date de création", default=fields.Datetime.now)
     end_date = fields.Datetime(string="Date de fin", readonly=True)
