@@ -26,7 +26,7 @@
 
         <div id="portal_client_category" position="inside">
             <t t-call="portal.portal_docs_entry">
-                <t t-set="title">Vos Factures</t>
+                <t t-set="title">Vos factures</t>
                 <t t-set="url" t-value="'/my/invoices?filterby=invoices'"/>
                 <t t-set="text">Suivez, téléchargez ou payez vos factures</t>
                 <t t-set="config_card" t-value="True"/>
