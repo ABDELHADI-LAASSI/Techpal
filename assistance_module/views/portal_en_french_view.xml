@@ -139,4 +139,17 @@
             </div>
         </xpath>
     </template>
+    
+    <template id="portal_my_details" name="Portal My Info" inherit_id="portal.portal_my_details">
+        <xpath expr="//div[@class='clearfix text-end mb-5']" position="replace">
+            <div class="clearfix text-end mb-5"></div>
+                <a href="/my/" class="btn btn-secondary me-2">
+                    Abandonner
+                </a>
+                <button type="submit" class="btn btn-primary float-end">
+                    Enregistrer
+                </button>
+            <div />
+        </xpath>
+    </template>
 </odoo>
