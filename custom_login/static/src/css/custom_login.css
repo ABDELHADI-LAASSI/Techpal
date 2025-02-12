@@ -139,3 +139,19 @@ main , .login_template_container , .card-body{
         font-size: 15px;
     }
 }
+
+
+.btn-auth {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: white;
+    color: #0c1348;
+    border: none;
+    padding: .7rem;
+}
+
+.btn-auth:hover {
+    background-color: #afafaf !important;
+    color: white !important;
+}

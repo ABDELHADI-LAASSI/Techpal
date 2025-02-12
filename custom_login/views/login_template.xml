@@ -7,13 +7,13 @@
                     <img src="/custom_login/static/src/img/Techpal.png"></img>
                     <hr />
                     <h2> © 2025 Techpal Corporation</h2>
-                    <a href="https://www.techpalservices.com/">Learn More</a>
+                    <a href="https://www.techpalservices.com/">En savoir plus</a>
                 </div>
                 <div class="form_page">
                     <form class="oe_login_form" role="form" method="post" action="/web/login" autocomplete="off">   
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         <div class="custom-title">
-                            <h1>Sign in</h1>
+                            <h1>Se connecter</h1>
                         </div>
     
                         <div class="form-group">
@@ -22,16 +22,16 @@
                         </div>
     
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">Mot de passe</label>
                             <input type="password" name="password" id="password" placeholder="Enter your password" class="form-control" required="required"/>
                         </div>
     
                         <div class="form-group-button">
-                            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                            <button type="submit" class="btn btn-auth">Se connecter</button>
                         </div>
     
                         <div class="form-group-password">
-                            <a href="/web/reset_password">Reset Password</a>
+                            <a href="/web/reset_password">Réinitialiser le mot de passe</a>
                         </div>
                     </form>
                 </div>
