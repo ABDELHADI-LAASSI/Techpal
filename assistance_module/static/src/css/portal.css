@@ -1,3 +1,15 @@
+.btn-primary {
+    background-color: #0c1348 !important;
+    border: none !important;
+    color: white !important;
+    transition: .3s;
+}
+
+.btn-primary:hover {
+    background-color: #002d49 !important;
+    color: white !important;
+}
+
 .details_h1 {
     text-align: start;
     margin-bottom: 5rem;
@@ -146,7 +158,22 @@
     row-gap: .7rem;
 }
 
+.return_home {
+    width: 300px;
+    border: none;
+    padding: 12px;
+    margin-top: 3rem;
+    background-color: #8595A2;
+    color: white;
+    border-radius: 5px;
+    /* margin-bottom: 1rem; */
+}
 
+
+.return_home:hover {
+    background-color: #8595A2;
+    color: white;
+}
 @media screen and (max-width: 770px) {
     .div-4 {
         grid-template-columns: 1fr 1fr;
@@ -162,5 +189,11 @@
 }
 
 .o_footer_copyright {
+    display: none !important;
+}
+
+
+
+.o_portal_index_card:has(a[title="Sales Orders"]) , .o_portal_index_card:has(a[title="Your Invoices"]) {
     display: none !important;
 }

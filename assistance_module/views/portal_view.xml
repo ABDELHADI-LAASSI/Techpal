@@ -13,10 +13,74 @@
                 <t t-set="icon" t-value="'/assistance_module/static/src/img/assistance.svg'"/>
             </t>
         </div>
+
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Commandes de vente</t>
+                <t t-set="url" t-value="'/my/orders'"/>
+                <t t-set="text">Suivez, consultez ou payez vos commandes</t>
+                <t t-set="config_card" t-value="True"/>
+                <t t-set="icon" t-value="'/sale/static/src/img/bag.svg'"/>
+            </t>
+        </div>
+
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Vos Factures</t>
+                <t t-set="url" t-value="'/my/invoices?filterby=invoices'"/>
+                <t t-set="text">Suivez, téléchargez ou payez vos factures</t>
+                <t t-set="config_card" t-value="True"/>
+                <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'"/>
+            </t>
+        </div>
     </template>
+
+    <template id="portal_my_details_fields_inherited" customize_show="True" inherit_id="portal.portal_my_details_fields" priority="20">
+        <xpath expr="//label[@for='name']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Nom</label>
+        </xpath>
+
+        <xpath expr="//label[@for='company_name']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Nom de l'entreprise</label>
+        </xpath>
+
+        <xpath expr="//label[@for='vat']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">ICE</label>
+        </xpath>
+
+        <xpath expr="//label[@for='phone']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Téléphone</label>
+        </xpath>
+
+        <xpath expr="//label[@for='street']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Adresse</label>
+        </xpath>
+
+        <xpath expr="//label[@for='zipcode']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Code postal</label>
+        </xpath>
+
+        <xpath expr="//label[@for='country_id']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Pays</label>
+        </xpath>
+
+        <xpath expr="//label[@for='city']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Ville</label>
+        </xpath>
+
+        <xpath expr="//label[@for='email']" position="replace">
+            <label class="col-form-label label-optional" for="zipcode">Courriel</label>
+        </xpath>
+
+    </template>
+
+
 
     <template id="custom_assistance_table_template" name="Custom Table" >
         <t t-call="portal.portal_layout">
+            <div class="mb-3">
+                <a href="/my" class="return_home" >Retour à la page d'accueil</a>
+            </div>
             <h2 class="details_h1">Vos demandes d'assistance</h2>
             <div>
                 <t t-if="success_message">
@@ -148,8 +212,8 @@
                                     <option value="wifi">Wifi</option>
                                     <option value="pc">Pc</option>
                                     <option value="imprimante">Imprimante</option>
-                                    <option value="telephone">Telephone</option>
-                                    <option value="camera">Camera</option>
+                                    <option value="telephone">Téléphone</option>
+                                    <option value="camera">Caméra</option>
                                 </select>
                             </div>
                             <div class="custom-form-control">
@@ -199,7 +263,7 @@
         <!-- Modification du logo dans le header -->
         <xpath expr="//div[@id='wrapwrap']/header//a[contains(@class, 'navbar-brand')]" position="replace">
             <a href="/" class="navbar-brand">
-                <img src="/assistance_module/static/src/img/techpal_logo_white-removebg-preview (1).png" 
+                <img src="/assistance_module/static/src/img/WhiteTechpal.png" 
                     t-att-alt="'Logo of %s' % res_company.name" 
                     t-att-title="res_company.name"
                     class="portal_logo_techpal"/>

@@ -1,0 +1,142 @@
+<odoo>
+    <template id="portal_my_orders_fr" name="Change My Orders Page To French - My Orders" inherit_id="sale.portal_my_orders">
+        <xpath expr="//div[hasclass('alert-warning')]" position="replace">
+            <div t-if="not orders" class="alert alert-warning" role="alert">
+                Il n'y a actuellement aucune commande de vente pour votre compte.
+            </div>
+        </xpath>
+
+        <xpath expr="//thead" position="replace">
+            <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Commande de Vente #</span>
+                            <span class='d-block d-md-none'>Réf.</span>
+                        </th>
+                        <th class="text-end">Date de Commande</th>
+                        <th class="text-center"/>
+                        <th class="text-end">Total</th>
+                    </tr>
+            </thead>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_content_fr" name="Change My Orders Page To French - Order Content" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//h2[@class='my-0 col-12 col-lg flex-grow-1 mb-1 mb-lg-0']" position="replace">
+            <h2 class="my-0 col-12 col-lg flex-grow-1 mb-1 mb-lg-0">
+                    Bon de commande -
+                    <em t-out="sale_order.name"/>
+            </h2>
+        </xpath>
+
+        <xpath expr="//span[@id='sale_info_title']" position="replace">
+            <h4 class="mb-1">Informations sur la Vente</h4>
+            <hr class="mt-1 mb-2"/>
+        </xpath>
+
+        <xpath expr="//table[@class='table table-borderless table-sm']//tbody[@id='sale_info_table']" position="replace">
+            <tr>
+                <th t-if="sale_order.state in ['sale', 'cancel']" class="ps-0 pb-0">Date de Commande:</th>
+                <th t-else="" class="ps-0 pb-0">Date:</th>
+                <td class="w-100 pb-0 text-wrap"><span t-field="sale_order.date_order" t-options='{"widget": "date"}'/></td>
+            </tr>
+            <tr t-if="sale_order.validity_date">
+                <th class="ps-0 pb-0">Date d'Expiration:</th>
+                <td class="w-100 pb-0 text-wrap"><span t-field="sale_order.validity_date" t-options='{"widget": "date"}'/></td>
+            </tr>
+            <tr t-if="sale_order.client_order_ref">
+                <th class="ps-0 pb-0">Votre Référence:</th>
+                <td class="w-100 pb-0 text-wrap"><span t-field="sale_order.client_order_ref"/></td>
+            </tr>
+        </xpath>
+
+        <xpath expr="//div[@id='customer_info']//h4[@class='mb-1']" position="replace">
+            <h4 class="mb-1">
+                <t t-if="sale_order.partner_shipping_id == sale_order.partner_invoice_id">
+                    Adresse de Facturation et d'Expédition
+                </t>
+                <t t-else="">
+                    Adresse de Facturation
+                </t>
+                <small t-if="sale_order.partner_id == sale_order.partner_invoice_id == sale_order.env.user.partner_id">
+                    <a class="small" t-attf-href="/my/account?redirect={{sale_order.get_portal_url()}}">
+                        <i class="fa fa-fw fa-pencil"/>
+                    </a>
+                </small>
+            </h4>
+        </xpath>
+
+        <xpath expr="//table[@id='sales_order_table']//thead" position="replace">
+            <thead class="bg-100">
+                <tr>
+                    <th class="text-start" id="product_name_header">Produits</th>
+                    <th class="text-end" id="product_qty_header">Quantité</th>
+                    <th t-attf-class="text-end {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+                        Prix Unitaire
+                    </th>
+                    <th t-if="display_discount" t-attf-class="text-end {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+                        <span>Réduc.%</span>
+                    </th>
+                    <th t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" id="taxes_header">
+                        <span>Taxes</span>
+                    </th>
+                    <th class="text-end" id="subtotal_header">
+                        <span>Montant</span>
+                    </th>
+                </tr>
+            </thead>
+        </xpath>
+
+        <xpath expr="//section[@t-if='sale_order.payment_term_id']" position="replace">
+            <h4 class="">Conditions de Paiement</h4>
+            <hr class="mt-0 mb-1"/>
+            <span t-field="sale_order.payment_term_id.note"/>
+        </xpath>
+
+        
+    </template>
+
+    <template id="sale_order_portal_template_fr" name="Portal Content" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//div[@id='sale_order_communication']" position="replace">
+            <h3>Historique de Communication</h3>
+            <t t-call="portal.message_thread"/>
+        </xpath>
+    </template>
+
+    <template id="portal_layout_fr" name="Change Portal Page To French" inherit_id="portal.portal_layout">
+        <xpath expr="//h3[@class='my-3']" position="replace">
+            <h3 class="my-3">Mon Compte</h3>
+        </xpath>
+    </template>
+
+    <template id="side_content" name="template_name" inherit_id="portal.side_content">
+        <xpath expr="//a[@href='/my/account']" position="replace">
+            <a role="button" href="/my/account" class="btn btn-link p-0 mt-3"><i class="fa fa-pencil"/>Modifier les Informations</a>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_fr" name="last" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@class='o_portal_my_home']" position="replace">
+            <div class="o_portal_my_home">
+                <div class="oe_structure" id="oe_structure_portal_my_home_1"/>
+                <div class="o_portal_docs row g-2">
+                    <div class="o_portal_doc_spinner spinner-border text-o-color-2 align-self-center mt-5"/>
+                    <div t-if="portal_alert_category_enable" class="o_portal_category row g-2 mt-3" id="portal_alert_category"/>
+                    <div t-if="portal_client_category_enable" class="o_portal_category row g-2 mt-3" id="portal_client_category"/>
+                    <div t-if="portal_service_category_enable" class="o_portal_category row g-2 mt-3" id="portal_service_category"/>
+                    <div t-if="portal_vendor_category_enable" class="o_portal_category row g-2 mt-3" id="portal_vendor_category"/>
+                    <div class="o_portal_category row g-2 mt-3" id="portal_common_category">
+                        <t t-call="portal.portal_docs_entry" t-if="False"/>
+                        <t t-call="portal.portal_docs_entry">
+                            <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                            <t t-set="title">Connexion &amp; Sécurité</t>
+                            <t t-set="text">Configurez vos paramètres de connexion</t>
+                            <t t-set="url" t-value="'/my/security'"/>
+                            <t t-set="config_card" t-value="True"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
