@@ -98,6 +98,7 @@
                             <th>Type de ticket</th>
                             <th>Type de problème</th>
                             <th>Description</th>
+                            <th>Statut</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,6 +111,7 @@
                                 <td><t t-esc="assistance.ticket_type"/></td>
                                 <td><t t-esc="assistance.type_probleme"/></td>
                                 <td><t t-esc="assistance.description"/></td>
+                                <td><t t-esc="assistance.stages"/></td>
                             </tr>
                         </t>
                     </tbody>
@@ -182,7 +184,7 @@
                         <div class="div-2">
                             <div class="custom-form-control">
                                 <label>Nom</label>
-                                <input type="text" disabled="disabled" name="name" class="form-control" id="name" required="required" placeholder="Nom" t-att-value="company_name" />
+                                <input type="text" disabled="disabled" name="name" class="form-control" id="name" required="1" placeholder="Nom" t-att-value="company_name" />
                             </div>
 
                             <div class="custom-form-control">
@@ -193,7 +195,7 @@
                         <div class="div-1">
                             <div class="custom-form-control">
                                 <label for="objet">Objet</label>
-                                <input class="form-control" id="objet" name="objet" />
+                                <input class="form-control" id="objet" required="required" name="objet" />
                             </div>
                         </div>
                         <div class="div-4">
@@ -243,7 +245,7 @@
                         <div class="div-1">
                             <div class="custom-form-control">
                                 <label for="description">Description du problème</label>
-                                <textarea class="form-control" style="height: 175px" id="description" name="description" rows="4"></textarea>
+                                <textarea class="form-control" style="height: 175px" id="description" name="description" rows="4" required="required"></textarea>
                             </div>
                         </div>
                         <div class="div-1">
