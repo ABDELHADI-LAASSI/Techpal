@@ -37,39 +37,39 @@
 
     <template id="portal_my_details_fields_inherited" customize_show="True" inherit_id="portal.portal_my_details_fields" priority="20">
         <xpath expr="//label[@for='name']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Nom</label>
+            <label class="col-form-label label-optional" >Nom</label>
         </xpath>
 
         <xpath expr="//label[@for='company_name']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Nom de l'entreprise</label>
+            <label class="col-form-label label-optional" >Nom de l'entreprise</label>
         </xpath>
 
         <xpath expr="//label[@for='vat']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">ICE</label>
-        </xpath>
-
-        <xpath expr="//label[@for='phone']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Téléphone</label>
-        </xpath>
-
-        <xpath expr="//label[@for='street']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Adresse</label>
+            <label class="col-form-label label-optional" >ICE</label>
         </xpath>
 
         <xpath expr="//label[@for='zipcode']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Code postal</label>
+            <label class="col-form-label label-optional" >Code postal</label>
+        </xpath>
+
+        <xpath expr="//label[@for='phone']" position="replace">
+            <label class="col-form-label label-optional" >Téléphone</label>
+        </xpath>
+
+        <xpath expr="//label[@for='street']" position="replace">
+            <label class="col-form-label label-optional" >Adresse</label>
         </xpath>
 
         <xpath expr="//label[@for='country_id']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Pays</label>
+            <label class="col-form-label label-optional" >Pays</label>
         </xpath>
 
         <xpath expr="//label[@for='city']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Ville</label>
+            <label class="col-form-label label-optional" >Ville</label>
         </xpath>
 
         <xpath expr="//label[@for='email']" position="replace">
-            <label class="col-form-label label-optional" for="zipcode">Courriel</label>
+            <label class="col-form-label label-optional" >Courriel</label>
         </xpath>
 
     </template>
