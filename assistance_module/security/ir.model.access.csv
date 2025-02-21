@@ -2,10 +2,8 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_assistance_manager,access_assistance_manager,model_assistance,assistance_module.assistance_manager,1,1,1,1
 access_assistance_tags_manager,access_assistance_tags_manager,model_assistance_tags,assistance_module.assistance_manager,1,1,1,1
 
-access_assistance,access_assistance,model_assistance,assistance_module.assistance_user,0,0,0,0
-access_assistance_tags,access_assistance_tags,model_assistance_tags,assistance_module.assistance_user,0,0,0,0
-
 access_assistance_general,access_assistance_general,model_assistance,,1,1,1,1
 access_assistance_tags_general,access_assistance_tags_general,model_assistance_tags,,1,1,1,1
 
-
+access_assistance,access_assistance,model_assistance,assistance_module.assistance_user,0,0,0,0
+access_assistance_tags,access_assistance_tags,model_assistance_tags,assistance_module.assistance_user,0,0,0,0
