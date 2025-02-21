@@ -12,4 +12,9 @@
         <field name="name">Assistance Manager</field>
         <field name="category_id" ref="assistance_module.assistance_category" />
     </record>
+
+    <record id="assistance_nothing" model="res.groups">
+        <field name="name">No Assistance</field>
+        <field name="category_id" ref="assistance_module.assistance_category" />
+    </record>
 </odoo>
