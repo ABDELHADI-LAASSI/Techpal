@@ -206,17 +206,17 @@ class Assistance(models.Model):
         if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
         
-        # template = self.env.ref('assistance_module.asistance_notification_template')
-        # template.email_to = 'bbe@techpalservices.com'
-        # template.send_mail(res.id, force_send=True)
+        template = self.env.ref('assistance_module.asistance_notification_template')
+        template.email_to = 'bbe@techpalservices.com'
+        template.send_mail(res.id, force_send=True)
 
-        # template2 = self.env.ref('assistance_module.asistance_notification_template')
-        # template2.email_to = 'techpalservices@gmail.com'
-        # template2.send_mail(res.id, force_send=True)
+        template2 = self.env.ref('assistance_module.asistance_notification_template')
+        template2.email_to = 'techpalservices@gmail.com'
+        template2.send_mail(res.id, force_send=True)
 
-        # template3 = self.env.ref('assistance_module.asistance_notification_template')
-        # template3.email_to = 'hma@techpalservices.com'
-        # template3.send_mail(res.id, force_send=True)
+        template3 = self.env.ref('assistance_module.asistance_notification_template')
+        template3.email_to = 'hta@techpalservices.com'
+        template3.send_mail(res.id, force_send=True)
         
         return res
 
