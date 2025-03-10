@@ -54,20 +54,18 @@ class AssistanceController(http.Controller):
         # Handle attachments
         attachment_files = request.httprequest.files.getlist('attachments')
 
-        print('attachment_files', attachment_files)
         attachment_ids = []
-
-        for attachment in attachment_files:
-            data = attachment.read()  # Read file content
-            attachment_id = request.env['ir.attachment'].sudo().create({
-                'name': attachment.filename,
-                'type': 'binary',
-                'datas': base64.b64encode(data),
-                'res_model': 'assistance',  # Link to your model
-            }).id
-            attachment_ids.append(attachment_id)
-
-        print('attachment_ids', attachment_ids)
+        if attachment_files and any(f.filename for f in attachment_files):  # Ensure at least one valid file
+            for attachment in attachment_files:
+                if attachment.filename:  # Ignore empty files
+                    data = attachment.read()  # Read file content
+                    attachment_id = request.env['ir.attachment'].sudo().create({
+                        'name': attachment.filename,
+                        'type': 'binary',
+                        'datas': base64.b64encode(data),
+                        'res_model': 'assistance',  # Link to your model
+                    }).id
+                    attachment_ids.append(attachment_id)
 
         # Create a record in the 'assistance' model
         request.env['assistance'].sudo().create({

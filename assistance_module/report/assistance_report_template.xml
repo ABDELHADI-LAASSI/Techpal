@@ -39,6 +39,35 @@
                         .regular {
                             font-family: "report_serif_regular";
                         }
+                        .list {
+                            list-style: none !important;
+                            padding-left: 30px !important;
+                        }
+
+                        .list li {
+                            position: relative !important;
+                            font-size: 16px !important;
+                            font-family: "report_serif_regular" !important;
+                            margin-bottom: 1rem !important;
+                        }
+                        .list li::before {
+                            content: "✔️";
+                            color: #0c1348;
+                            font-weight: bold;
+                            display: inline-block;
+                            position: absolute;
+                            left: -25px;
+                        }
+
+                        .techniciens {
+                            list-style: none !important;
+                            padding-left: 0 !important;
+                        }
+                        .techniciens li {
+                            font-family: "report_serif_regular" !important;
+                            margin-bottom: .3rem !important;
+                            font-size: 16px !important;
+                        }
                     </style>
                     <div class="page">
                         <h1 class="bold" style="margin-bottom: 2.5rem;">RAPPORT D'INTERVENTION</h1>
@@ -98,8 +127,17 @@
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <span class="bold text-up">traveaux realises / pieces fournies</span> :
-                                        <span class="regular"><t t-esc="doc.traveaux_realises" /></span>
+                                        <span class="bold text-up">travaux realises / pieces fournies</span> : 
+                                        <br />
+                                        <!-- <span class="regular"><t t-esc="doc.traveaux_realises" /></span> -->
+
+                                        <ul class="list">
+                                            <t t-if="doc.traveaux_realises">  <!-- Check if subtitle exists -->
+                                                <t t-foreach="doc.traveaux_realises.split('\n')" t-as="travaux">
+                                                    <li class="subsub" ><t t-esc="travaux"/></li>
+                                                </t>
+                                            </t>
+                                        </ul>
                                     </div>
                                 </td>
                             </tr>
@@ -140,8 +178,15 @@
                             <tr>
                                 <td>
                                     <div class="mb-1">
-                                        <span class="bold text-up">Nom et Prénom du TECHNICIEN</span> : 
-                                        <span class="regular"><t t-esc="doc.technicien.name" /></span>
+                                        <span class="bold text-up">Nom et Prénom du technicien</span> : 
+                                        <!-- <span class="regular"><t t-esc="doc.technicien.name" /></span> -->
+                                        <t t-if="doc.technicien"> 
+                                            <ul class="techniciens">
+                                                <t t-foreach="doc.technicien" t-as="technicien">
+                                                    <li><t t-esc="technicien.name"/></li>
+                                                </t>
+                                            </ul>
+                                        </t>
                                     </div>
                                     <div style="margin-bottom: 5rem !important;">
                                         <span class="bold text-up mb-2">signature du technicien</span> : 

@@ -28,6 +28,7 @@
                             <field name="email" widget="email" />
                             <field name="phone" />
                             <field name="adress" />
+                            <field name="user_ids" widget="many2many_avatar_user" groups="assistance_module.assistance_manager" />
                         </group>
                         <group>
                             <field name="priority" widget="priority" />
@@ -56,7 +57,7 @@
                                 <field name="date_fin_intervention" string="Date de fin d'intervention" />
                                 <field name="duree_intervention" string="Durée d'intervention" />
                                 <field name="deplacement_km" string="Déplacement (km)" />
-                                <field name="technicien" string="Téchnicien" />
+                                <field name="technicien" string="Téchnicien" widget="many2many_avatar_user" />
                             </group>
                         </page>
 
@@ -141,6 +142,9 @@
                                 <div class="info">
                                     <p>Priorité : </p>
                                     <p> <field name="priority" widget="priority" /> </p>
+                                </div>
+                                <div>
+                                    <field name="user_ids" widget="many2many_avatar_user" readonly="1" />
                                 </div>
                             </div>
                         </div>

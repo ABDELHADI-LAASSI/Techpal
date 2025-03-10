@@ -24,3 +24,15 @@
     font-size: 17px;
 }
 
+
+
+
+.list li::before {
+    content: "\2022";
+    color: #0c1348;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+

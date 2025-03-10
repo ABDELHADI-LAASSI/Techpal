@@ -204,6 +204,7 @@
                                 <select class="form-control" id="ticket_type" name="ticket_type">
                                     <option value="incident">Incident</option>
                                     <option value="demande">Demande</option>
+                                    <option value="intervention_hebdo">Intervention hebdomadaire</option>
                                 </select>
                             </div>
                             <div class="custom-form-control">
