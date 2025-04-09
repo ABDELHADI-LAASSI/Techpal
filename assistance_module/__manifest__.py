@@ -13,7 +13,7 @@
         'views/base_view.xml',
         'views/assistance_view.xml',
         'views/assistance_tags_view.xml',
-        'views/portal_en_french_view.xml',
+        # 'views/portal_en_french_view.xml',
         'views/portal_view.xml',
         'report/assistance_report_template.xml',
     ],

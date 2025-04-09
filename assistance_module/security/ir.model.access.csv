@@ -7,3 +7,10 @@ access_assistance_tags,access_assistance_tags,model_assistance_tags,assistance_m
 
 access_assistance_nothing,access_assistance_nothing,model_assistance,assistance_module.assistance_nothing,0,0,0,0
 access_assistance_tags_nothing,access_assistance_tags_nothing,model_assistance_tags,assistance_module.assistance_nothing,0,0,0,0
+
+access_assistance_traveaux,access_assistance_traveaux,model_assistance_traveaux,,1,1,1,1
+access_assistance_traveaux_line,access_assistance_traveaux_line,model_assistance_traveaux_line,,1,1,1,1
+
+access_assistance_diagnostic,access_assistance_diagnostic,model_assistance_diagnostic,,1,1,1,1
+access_assistance_diagnostic_line,access_assistance_diagnostic_line,model_assistance_diagnostic_line,,1,1,1,1
+

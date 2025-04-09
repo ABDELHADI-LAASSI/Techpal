@@ -1,0 +1,65 @@
+<odoo>
+
+    <template id="tva_to_ice_sale" name="TVA TO ICE SALE" inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//p[@t-if='doc.partner_id.vat']" position="replace">
+            <p t-if="doc.partner_id.vat">
+                <t t-if="doc.company_id.account_fiscal_country_id.vat_label" t-out="doc.company_id.account_fiscal_country_id.vat_label"/>
+                <t t-else="">ICE</t>: <span t-field="doc.partner_id.vat"/>
+            </p>
+        </xpath>
+
+    </template>
+
+    <template id="tva_to_ice_invoice" name="TVA TO ICE INVOICE" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//div[@id='partner_vat_address_not_same_as_shipping']" position="replace">
+            <div t-if="o.partner_id.vat" id="partner_vat_address_not_same_as_shipping">
+                <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                <t t-else="">ICE</t>: <span t-field="o.partner_id.vat"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='partner_vat_address_same_as_shipping']" position="replace">
+            <div t-if="o.partner_id.vat" id="partner_vat_address_same_as_shipping">
+                <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                <t t-else="">ICE</t>: <span t-field="o.partner_id.vat"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='partner_vat_no_shipping']" position="replace">
+            <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
+                <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                <t t-else="">ICE</t>: <span t-field="o.partner_id.vat"/>
+            </div>
+        </xpath>
+
+    </template>
+
+    <template id="tva_to_ice_purchase_order" name="TVA TO ICE PURCHASE ORDER" inherit_id="purchase.report_purchaseorder_document">
+
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                <t t-if="o.partner_id.vat">
+                    <div style="display: flex;">ICE : <span t-field="o.partner_id.vat" class="m-0"/></div>
+                </t>
+            </t>
+        </xpath>
+
+    </template>
+
+    <template id="tva_to_ice_purchase_quotation" name="TVA TO ICE PURCHASE QUOTATION" inherit_id="purchase.report_purchasequotation_document">
+
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                <t t-if="o.partner_id.vat">
+                    <div style="display: flex;">ICE : <span t-field="o.partner_id.vat" class="m-0"/></div>
+                </t>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

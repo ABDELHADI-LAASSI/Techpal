@@ -51,8 +51,28 @@
                             margin-bottom: 1rem !important;
                         }
                         .list li::before {
-                            content: "✔️";
+                            content: "•";
                             color: #0c1348;
+                            font-weight: bold;
+                            display: inline-block;
+                            position: absolute;
+                            left: -25px;
+                        }
+
+                        .sous-list {
+                            list-style: none !important;
+                            padding-left: 30px !important;
+                        }
+
+                        .sous-list li {
+                            position: relative !important;
+                            font-size: 14px !important;
+                            font-family: "report_serif_regular" !important;
+                            margin-bottom: 1rem !important;
+                        }
+                        .sous-list li::before {
+                            content: "•";
+                            color: #de1219;
                             font-weight: bold;
                             display: inline-block;
                             position: absolute;
@@ -78,18 +98,39 @@
                                         <span class="bold text-up">Nº DE fiche </span> :
                                         <span class=""> <t t-esc="doc.name" /> </span>
                                     </div>
-                                    <div>
-                                        <span class="bold text-up">client</span> :
-                                        <span class="regular"><t t-esc="doc.company_name.name" /></span>
-                                    </div>
-                                    <div>
-                                        <span class="bold text-up">adresse</span> :
-                                        <span class="regular"><t t-esc="doc.adress" /></span>
-                                    </div>
-                                    <div>
-                                        <span class="bold text-up">tel</span> :
-                                        <span class=""><t t-esc="doc.phone" /></span>
-                                    </div>
+                                    <t t-if="doc.company_name.is_company == False">
+
+                                        <div>
+                                            <span class="bold text-up">client</span> :
+                                            <span class="regular"><t t-esc="doc.company_name.parent_id.name" /></span>
+                                        </div>
+                                        <div>
+                                            <span class="bold text-up">adresse</span> :
+                                            <span class="regular"><t t-esc="doc.company_name.parent_id.street" /></span>
+                                        </div>
+                                        <div>
+                                            <span class="bold text-up">tel</span> :
+                                            <span class=""><t t-esc="doc.company_name.parent_id.phone" /></span>
+                                        </div>
+
+                                    </t>
+                                    <t t-elif="doc.company_name.is_company == True">
+
+                                        <div>
+                                            <span class="bold text-up">client</span> :
+                                            <span class="regular"><t t-esc="doc.company_name.name" /></span>
+                                        </div>
+                                        <div>
+                                            <span class="bold text-up">adresse</span> :
+                                            <span class="regular"><t t-esc="doc.company_name.street" /></span>
+                                        </div>
+                                        <div>
+                                            <span class="bold text-up">tel</span> :
+                                            <span class=""><t t-esc="doc.company_name.phone" /></span>
+                                        </div>
+
+                                    </t>
+                                    
                                 </td>
                                 <td>
                                     <div>
@@ -104,10 +145,6 @@
                                         <span class="bold text-up">materiel </span> : 
                                         <span class="regular"><t t-esc="doc.materiel" /></span>
                                     </div>
-                                    <div>
-                                        <span class="bold text-up">garantie</span> : 
-                                        <span class="regular"><t t-esc="doc.garantie" /></span>
-                                    </div>
                                 </td>
                                 <td>
                                     <div>
@@ -119,22 +156,35 @@
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <span class="bold text-up">diagnostique / observations</span> :
-                                        <span class="regular"><t t-esc="doc.diagnostic" /></span>
+                                        <span style="margin-bottom: 20px;" class="bold text-up">DIAGNOSTIQUE / OBSERVATIONS </span> : 
+                                        <ul class="font list">
+                                            <t t-foreach="doc.diagnostic_ids" t-as="diagno">
+                                                <li><t t-esc="diagno.name" /></li>
+                                                <t t-if="diagno.diagnostic_line_ids">
+                                                    <ul class="sous-list">
+                                                        <t t-foreach="diagno.diagnostic_line_ids" t-as="line">
+                                                            <li><t t-esc="line.name" /></li>
+                                                        </t>
+                                                    </ul>
+                                                </t>
+                                            </t>
+                                        </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <span class="bold text-up">travaux realises / pieces fournies</span> : 
-                                        <br />
-                                        <!-- <span class="regular"><t t-esc="doc.traveaux_realises" /></span> -->
-
-                                        <ul class="list">
-                                            <t t-if="doc.traveaux_realises">  <!-- Check if subtitle exists -->
-                                                <t t-foreach="doc.traveaux_realises.split('\n')" t-as="travaux">
-                                                    <li class="subsub" ><t t-esc="travaux"/></li>
+                                        <span style="margin-bottom: 20px;" class="bold text-up">TRAVAUX REALISES / PIECES FOURNIES </span> : 
+                                        <ul class="font list">
+                                            <t t-foreach="doc.traveaux_ids" t-as="traveaux">
+                                                <li><t t-esc="traveaux.name" /></li>
+                                                <t t-if="traveaux.traveaux_line_ids">
+                                                    <ul class="sous-list">
+                                                        <t t-foreach="traveaux.traveaux_line_ids" t-as="traveaux_line">
+                                                            <li><t t-esc="traveaux_line.name" /></li>
+                                                        </t>
+                                                    </ul>
                                                 </t>
                                             </t>
                                         </ul>

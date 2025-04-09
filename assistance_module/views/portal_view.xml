@@ -14,7 +14,7 @@
             </t>
         </div>
 
-        <div id="portal_client_category" position="inside">
+        <!-- <div id="portal_client_category" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">Commandes de vente</t>
                 <t t-set="url" t-value="'/my/orders'"/>
@@ -32,7 +32,7 @@
                 <t t-set="config_card" t-value="True"/>
                 <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'"/>
             </t>
-        </div>
+        </div> -->
     </template>
 
     <template id="portal_my_details_fields_inherited" customize_show="True" inherit_id="portal.portal_my_details_fields" priority="20">

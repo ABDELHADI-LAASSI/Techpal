@@ -69,13 +69,14 @@ class Assistance(models.Model):
         ('infogerance','infogérance'),
     ],string="", default="infogerance")
     diagnostic = fields.Text(string="")
-    traveaux_realises = fields.Text(string="")
+    diagnostic_ids = fields.One2many('assistance.diagnostic', 'assistance_id', string='Diagnostic / Observations')
     date_intervention = fields.Datetime(string="")
     date_fin_intervention = fields.Datetime(string="")
     duree_intervention = fields.Char(string="Durée d'intervention", compute="_compute_duree_intervention", store=True)
     deplacement_km = fields.Float(string="")
     remarque = fields.Text(string="")
-
+    traveaux_realises = fields.Text(string="")
+    traveaux_ids = fields.One2many('assistance.traveaux', 'assistance_id', string='Travaux réalisés / Pièces fournies')
 
     # Additional fields
     type_probleme = fields.Selection([
@@ -105,6 +106,9 @@ class Assistance(models.Model):
     previous_stage = fields.Char(string="Previous Stage", readonly=True)
 
     sequence = fields.Integer(default=1)
+
+
+
     
     def _group_expand_states(self, states, domain, order):
         return [key for key, val in self._fields['stages'].selection]
@@ -117,7 +121,6 @@ class Assistance(models.Model):
                     raise ValidationError(
                         "La date de fin d'intervention ne peut pas être antérieure à la date d'intervention."
                     )
-
 
     @api.depends('date_intervention', 'date_fin_intervention')
     def _compute_duree_intervention(self):
@@ -154,7 +157,31 @@ class Assistance(models.Model):
                 record.time_to_create = '<span class="minutes">0 Min</span>'
 
     @api.model
-    def write(self, vals):
+    def _search(self, domain, offset=0, limit=None, order=None, access_rights_uid=None):
+        
+        user = self.env.user
+
+        if user.has_group('assistance_module.assistance_manager'):
+            pass
+        elif user.has_group('assistance_module.assistance_user'):
+            domain += [
+                ('user_ids', 'in', user.id),  # User is the demandeur
+            ]
+
+        record = super(Assistance, self)._search(domain, offset, limit, order, access_rights_uid)
+
+        return record
+
+    @api.model
+    def write(self, vals):  
+        if 'user_ids' in vals:  # Check if 'user_ids' field is being updated
+            for record in self:
+                # Capture the current user as the previous user before updating
+                previous_user = bool(record.user_ids)
+                new_user = bool(vals['user_ids'])
+
+                if not previous_user and new_user and record.stages == 'nouveau':
+                    vals['stages'] = 'affecte'
         if 'stages' in vals:  # Check if 'stages' field is being updated
             for record in self:
                 # Capture the current stage as the previous stage before updating
@@ -186,13 +213,14 @@ class Assistance(models.Model):
 
         return super(Assistance, self).write(vals)
 
-
-
     def send_email(self, email_to):
         template = self.env.ref('assistance_module.asistance_notification_template')
         template.email_to = email_to
         template.send_mail(self.id, force_send=True)
 
+    def check_parent(self):
+        for record in self:
+            print("===============",record.company_name.parent_id.name)
     @api.model
     def create(self, vals):
         res = super(Assistance, self).create(vals)
@@ -200,27 +228,24 @@ class Assistance(models.Model):
         # Ensure the record is fully saved before proceeding
         res._cr.commit()
         
-        # Now you can safely access the data
-        print("================= company", res.company_name.name)
-        
         if res.name == 'Nouveau':
             res.name = self.env['ir.sequence'].next_by_code('assistance_seq.')
         
-        template = self.env.ref('assistance_module.asistance_notification_template')
-        template.email_to = 'bbe@techpalservices.com'
-        template.send_mail(res.id, force_send=True)
+        # template = self.env.ref('assistance_module.asistance_notification_template')
+        # template.email_to = 'bbe@techpalservices.com'
+        # template.send_mail(res.id, force_send=True)
 
-        template2 = self.env.ref('assistance_module.asistance_notification_template')
-        template2.email_to = 'techpalservices@gmail.com'
-        template2.send_mail(res.id, force_send=True)
+        # template2 = self.env.ref('assistance_module.asistance_notification_template')
+        # template2.email_to = 'techpalservices@gmail.com'
+        # template2.send_mail(res.id, force_send=True)
 
-        template3 = self.env.ref('assistance_module.asistance_notification_template')
-        template3.email_to = 'hta@techpalservices.com'
-        template3.send_mail(res.id, force_send=True)
+        # template3 = self.env.ref('assistance_module.asistance_notification_template')
+        # template3.email_to = 'hta@techpalservices.com'
+        # template3.send_mail(res.id, force_send=True)
         
         return res
-
     
+
     def to_cancelled(self):
         self.stages = "pris_charge"
     
@@ -233,8 +258,6 @@ class Assistance(models.Model):
 
     def _get_report_base_filename(self):
         return self.name
-
-    
 
 class AssistanceTags(models.Model):
     _name = 'assistance.tags'

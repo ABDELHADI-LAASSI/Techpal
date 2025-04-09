@@ -194,6 +194,6 @@
 
 
 
-.o_portal_index_card:has(a[title="Sales Orders"]) , .o_portal_index_card:has(a[title="Your Invoices"]) , .o_portal_index_card:has(a[title="Your Orders"]) , .o_portal_index_card:has(a[title="Your Bills"]) {
+/* .o_portal_index_card:has(a[title="Sales Orders"]) , .o_portal_index_card:has(a[title="Your Invoices"]) , .o_portal_index_card:has(a[title="Your Orders"]) , .o_portal_index_card:has(a[title="Your Bills"]) {
     display: none !important;
-}
+} */

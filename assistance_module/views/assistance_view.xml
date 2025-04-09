@@ -10,6 +10,7 @@
                     <!-- <button name="to_fait" type="object" string="Résolu" class="btn-primary" invisible="stages != 'affecte'" />
                     <button name="to_closed" type="object" string="Annulé" class="btn-primary" invisible="stages != 'affecte'" />
                     <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" /> -->
+                    <button name="check_parent" type="object" string="Check" class="btn-primary"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Résolu" bg_color="text-bg-success" invisible="stages != 'fait'" />
@@ -26,8 +27,8 @@
                             <field name="ticket_type" />
                             <field name="company_name" />
                             <field name="email" widget="email" />
-                            <field name="phone" />
-                            <field name="adress" />
+                            <!-- <field name="phone" />
+                            <field name="adress" /> -->
                             <field name="user_ids" widget="many2many_avatar_user" groups="assistance_module.assistance_manager" />
                         </group>
                         <group>
@@ -51,8 +52,47 @@
                                 <field name="garantie" string="Garantie" />
                                 <field name="remarque" string="Remarque" />
                                 <field name="nature_de_contract" string="Nature de contrat" />
-                                <field name="diagnostic" string="Diagnostic / Observations" />
-                                <field name="traveaux_realises" string="Travaux réalisés / Pieces fournies" />
+
+                                <field name="diagnostic_ids" style="margin: 1rem 0;">
+                                    <tree string="Diagnostics">
+                                        <field name="name" string="Résumé"/>
+                                    </tree>
+                                    <form string="Fiche de diagnostic">
+                                        <sheet>
+                                            <group string="Résultat du diagnostic">
+                                                <field name="name" string="Observation principale"/>
+                                            </group>
+                                            <group string="Actions réalisées">
+                                                <field name="diagnostic_line_ids">
+                                                    <tree string="Tâches" editable="bottom">
+                                                        <field name="name" string="Description de l’action"/>
+                                                    </tree>
+                                                </field>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+
+                                <field name="traveaux_ids" style="margin: 1rem 0;">
+                                    <tree string="Travaux réalisés">
+                                        <field name="name" string="Description du travail"/>
+                                    </tree>
+                                    <form string="Détail du travail réalisé">
+                                        <sheet>
+                                            <group string="Informations sur le travail">
+                                                <field name="name" string="Travail effectué"/>
+                                            </group>
+                                            <group string="Détails des tâches effectuées">
+                                                <field name="traveaux_line_ids">
+                                                    <tree string="Tâches réalisées" editable="bottom">
+                                                        <field name="name" string="Description de la tâche"/>
+                                                    </tree>
+                                                </field>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+
                                 <field name="date_intervention" string="Date d'intervention" />
                                 <field name="date_fin_intervention" string="Date de fin d'intervention" />
                                 <field name="duree_intervention" string="Durée d'intervention" />
@@ -141,10 +181,10 @@
                                 </div>
                                 <div class="info">
                                     <p>Priorité : </p>
-                                    <p> <field name="priority" widget="priority" /> </p>
+                                    <p> <field name="priority" widget="priority" readonly="1" /> </p>
                                 </div>
                                 <div>
-                                    <field name="user_ids" widget="many2many_avatar_user" readonly="1" />
+                                    <field name="user_ids" widget="many2many_avatar_user" readonly="1" groups="assistance_module.assistance_manager" />
                                 </div>
                             </div>
                         </div>
