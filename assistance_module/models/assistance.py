@@ -26,7 +26,7 @@ class Assistance(models.Model):
     ticket_type = fields.Selection([
         ('incident', 'Incident'),
         ('demande', 'Demande'),
-        ('intervention_hebdo', 'Intervention hebdomadaire'),
+        ('intervention_hebdo', 'Intervention maintenance corrective'),
         ('intervention_maintenance','Intervention maintenance préventive'),
     ], string="Type du ticket", default="incident")
 

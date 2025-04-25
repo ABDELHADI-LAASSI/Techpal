@@ -10,7 +10,7 @@
                     <!-- <button name="to_fait" type="object" string="Résolu" class="btn-primary" invisible="stages != 'affecte'" />
                     <button name="to_closed" type="object" string="Annulé" class="btn-primary" invisible="stages != 'affecte'" />
                     <button name="to_encours" type="object" string="En Cours" class="btn-primary" invisible="stages != 'nouveau'" /> -->
-                    <button name="check_parent" type="object" string="Check" class="btn-primary"/>
+                    <!-- <button name="check_parent" type="object" string="Check" class="btn-primary"/> -->
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Résolu" bg_color="text-bg-success" invisible="stages != 'fait'" />
@@ -97,7 +97,7 @@
                                 <field name="date_fin_intervention" string="Date de fin d'intervention" />
                                 <field name="duree_intervention" string="Durée d'intervention" />
                                 <field name="deplacement_km" string="Déplacement (km)" />
-                                <field name="technicien" string="Téchnicien" widget="many2many_avatar_user" />
+                                <field name="technicien" string="Techniciens" widget="many2many_avatar_user" />
                             </group>
                         </page>
 

@@ -228,7 +228,7 @@
                             <tr>
                                 <td>
                                     <div class="mb-1">
-                                        <span class="bold text-up">Nom et Prénom du technicien</span> : 
+                                        <span class="bold text-up">Nom et Prénom du (s) technicien (s)</span> : 
                                         <!-- <span class="regular"><t t-esc="doc.technicien.name" /></span> -->
                                         <t t-if="doc.technicien"> 
                                             <ul class="techniciens">
@@ -239,15 +239,15 @@
                                         </t>
                                     </div>
                                     <div style="margin-bottom: 5rem !important;">
-                                        <span class="bold text-up mb-2">signature du technicien</span> : 
+                                        <span class="bold text-up mb-2">signature du (s) technicien (s) </span> : 
                                     </div>
                                 </td>
                                 <td>
                                     <div class="mb-1">
-                                        <span class="bold text-up">nom du signataire</span> : 
+                                        <span class="bold text-up">nom du client</span> : 
                                     </div>
                                     <div style="margin-bottom: 5rem !important;">
-                                        <span class="bold text-up mb-2">chachet et signature </span>
+                                        <span class="bold text-up mb-2">cachet et signature </span>
                                     </div>
                                     
                                 </td>
