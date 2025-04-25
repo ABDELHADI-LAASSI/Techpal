@@ -156,7 +156,7 @@
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <span style="margin-bottom: 20px;" class="bold text-up">DIAGNOSTIQUE / OBSERVATIONS </span> : 
+                                        <span style="margin-bottom: 20px;" class="bold text-up">DIAGNOSTIC / OBSERVATIONS </span> : 
                                         <ul class="font list">
                                             <t t-foreach="doc.diagnostic_ids" t-as="diagno">
                                                 <li><t t-esc="diagno.name" /></li>
@@ -195,7 +195,7 @@
                                 <td>
                                     <div>
                                         <span class="bold text-up">Date de début d'intervention</span> :
-                                        <span class=""><t t-esc="doc.date_intervention and doc.date_intervention.date() or ''" /></span>
+                                        <span class=""><t t-esc="doc.date_intervention.strftime('%d/%m/%Y')" /></span>
                                     </div>
                                     <div>
                                         <span class="bold text-up">Heures de début d'intervention</span> :
@@ -203,7 +203,7 @@
                                     </div>
                                     <div>
                                         <span class="bold text-up">Date de fin d'intervention</span> :
-                                        <span class=""><t t-esc="doc.date_fin_intervention and doc.date_fin_intervention.date() or ''" /></span>
+                                        <span class=""><t t-esc="doc.date_fin_intervention.strftime('%d/%m/%Y')" /></span>
                                     </div>
                                     <div>
                                         <span class="bold text-up">Heures de fin d'intervention</span> :
@@ -228,7 +228,7 @@
                             <tr>
                                 <td>
                                     <div class="mb-1">
-                                        <span class="bold text-up">Nom et Prénom du (s) technicien (s)</span> : 
+                                        <span class="bold text-up">Nom et Prénom du(s) technicien(s)</span> : 
                                         <!-- <span class="regular"><t t-esc="doc.technicien.name" /></span> -->
                                         <t t-if="doc.technicien"> 
                                             <ul class="techniciens">
@@ -239,7 +239,7 @@
                                         </t>
                                     </div>
                                     <div style="margin-bottom: 5rem !important;">
-                                        <span class="bold text-up mb-2">signature du (s) technicien (s) </span> : 
+                                        <span class="bold text-up mb-2">signature du(s) technicien(s) </span> : 
                                     </div>
                                 </td>
                                 <td>
