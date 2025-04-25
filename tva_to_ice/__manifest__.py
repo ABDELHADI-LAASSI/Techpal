@@ -5,7 +5,7 @@
     "version": "1.0",
     "license": "LGPL-3",
     
-    "depends": ['contacts','sale_management','account'],
+    "depends": ['contacts','sale_management','account', 'purchase'],
 
     "data": [
         'views/tva_to_ice.xml',

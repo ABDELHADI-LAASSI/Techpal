@@ -27,6 +27,7 @@ class Assistance(models.Model):
         ('incident', 'Incident'),
         ('demande', 'Demande'),
         ('intervention_hebdo', 'Intervention hebdomadaire'),
+        ('intervention_maintenance','Intervention maintenance préventive'),
     ], string="Type du ticket", default="incident")
 
     user_ids = fields.Many2many(

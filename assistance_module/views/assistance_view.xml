@@ -62,10 +62,10 @@
                                             <group string="Résultat du diagnostic">
                                                 <field name="name" string="Observation principale"/>
                                             </group>
-                                            <group string="Actions réalisées">
+                                            <group string="">
                                                 <field name="diagnostic_line_ids">
                                                     <tree string="Tâches" editable="bottom">
-                                                        <field name="name" string="Description de l’action"/>
+                                                        <field name="name" string="Description"/>
                                                     </tree>
                                                 </field>
                                             </group>

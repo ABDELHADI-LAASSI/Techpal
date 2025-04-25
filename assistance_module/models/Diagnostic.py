@@ -8,4 +8,4 @@ class Diagnostic(models.Model):
 
     assistance_id = fields.Many2one('assistance', string='Assistance')
 
-    diagnostic_line_ids = fields.One2many('assistance.diagnostic.line', 'diagnostic_id', string='Diagnostic Lines')
+    diagnostic_line_ids = fields.One2many('assistance.diagnostic.line', 'diagnostic_id', string='Lignes du Diagnostic')
