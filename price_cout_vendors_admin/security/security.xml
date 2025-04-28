@@ -1,0 +1,11 @@
+<odoo>
+    <record id="price_category" model="ir.module.category">
+        <field name="name">Prices</field>
+    </record>
+
+    <record id="price_user" model="res.groups">
+        <field name="name">Prices User</field>
+        <field name="category_id" ref="price_cout_vendors_admin.price_category" />
+    </record>
+
+</odoo>

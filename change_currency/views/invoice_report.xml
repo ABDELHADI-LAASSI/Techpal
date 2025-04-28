@@ -1,0 +1,15 @@
+<odoo>
+
+    <template id="total_tavle_invoice" name="TABLE INVOICE" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//t[@t-call='account.document_tax_totals_company_currency_template']" position="replace">
+            
+        </xpath>
+
+        <xpath expr="//p[@t-if='o.company_id.display_invoice_amount_total_words']" position="replace">
+            
+        </xpath>
+
+    </template>
+
+</odoo>
